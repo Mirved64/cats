@@ -138,7 +138,22 @@ form.addEventListener("submit", e => {
 })
 
 
+let loginBtn = document.querySelector("#login");
+let popupLogin = document.querySelector("#popup-login");
+let closePopupLogin = popupLogin.querySelector(".popup-close");
 
+loginBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  if (!popupLogin.classList.contains("active")) {
+    popupLogin.classList.add("active");
+    popupLogin.parentElement.classList.add("active");
+  }
+});
+
+closePopupLogin.addEventListener("click", () => {
+  popupLogin.classList.remove("active");
+  popupLogin.parentElement.classList.remove("active");
+})
 
 
 

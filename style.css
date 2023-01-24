@@ -148,6 +148,48 @@ form {
   gap: 20px;
 }
 
+
+.popup-login {
+  width: calc(100% - 30px);
+  max-height: calc(100% - 30px);
+  overflow-y: auto;
+  box-sizing: border-box;
+  max-width: 600px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 2px 0 #0004;
+  position: relative;
+  display: none;
+}
+
+.popup-login h2 {
+  margin: 0 0 20px;
+  text-align: center;
+}
+
+.popup-login.active {
+  display: block;
+}
+
+.form-login {
+  display: flex;
+  justify-content: space-around;
+}
+
+.clearfix {
+  margin: 0;
+}
+
+.clearfix:last-child {
+  margin: auto 0;
+}
+
+.clearfix label {
+  display: block;
+  padding-bottom: 10px;
+}
+
 @media (min-width: 768px) {
   main {
     grid-template-columns: repeat(3, 1fr);
