@@ -157,3 +157,10 @@ closePopupLogin.addEventListener("click", () => {
 
 
 
+const submitBtn = document.querySelector('#loginBtn');
+
+submitBtn.onclick = () => {
+  const login = document.querySelector('[name = "login"]');
+  document.cookie = `Login=${login.value}`;
+}
+
