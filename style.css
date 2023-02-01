@@ -190,6 +190,31 @@ form {
   padding-bottom: 10px;
 }
 
+.info-card__content {
+  display: flex;
+  
+  justify-content: space-around;
+  
+}
+
+.content-img {
+  max-width: 50%;
+  margin: auto 0;
+}
+
+.content-text {
+  width: 50%;
+  margin-left: 20px;
+}
+
+.info-card__content img {
+  max-width:100%;
+  height:auto;
+  object-fit: cover;
+}
+
+
+
 @media (min-width: 768px) {
   main {
     grid-template-columns: repeat(3, 1fr);
