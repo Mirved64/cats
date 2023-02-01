@@ -24,7 +24,7 @@ const updCards = function (data) {
 
   data.forEach(function (cat) {
     if (cat.id) {
-      let card = `<div class="${cat.favourite ? "card like" : "card"}" style="background-image: url(${cat.img_link || "images/cat.jpg"})">
+      let card = `<div class="${cat.favourite ? "card like" : "card"}" style="background-image: url(${cat.img_link || "images/cat.jpg"})" id="${cat.id}_card">
       <span>${cat.name}</span>
       </div>`;
       main.innerHTML += card;
@@ -36,6 +36,44 @@ const updCards = function (data) {
   for (let i = 0, cnt = cards.length; i < cnt; i++) {
     const width = cards[i].offsetWidth;
     cards[i].style.height = width * 0.6 + "px";
+
+    cards[i].addEventListener('click', (id) => {
+      
+      const popupCard = document.querySelector('#popup-card');
+            
+      if (!popupCard.classList.contains("active")) {
+        popupCard.classList.add("active");
+        popupCard.parentElement.classList.add("active");
+      }
+      
+      popupCard.innerHTML = "";  
+
+      
+
+      let popupCardInfo = `<div class="popup-close btn">
+        <i class="fa-solid fa-xmark"></i>
+        </div>
+        <h2>Данные котика</h2>
+        <div class="form-img"></div>
+        <p>Id: </p>
+        <p>Возраст: </p>
+        <p>Имя: </p>
+        <p>Рейтинг: </p>
+        <p>Описание: </p>
+        <p>Любимчик:</p> 
+        <img src="" alt="">`;
+
+      popupCard.innerHTML += popupCardInfo;  
+
+      const closePopupCard = popupCard.querySelector(".popup-close");
+
+      closePopupCard.addEventListener('click', () => {
+        popupCard.classList.remove("active");
+        popupCard.parentElement.classList.remove("active");
+      })
+    });
+
+    
   }
 }
 
@@ -163,4 +201,46 @@ submitBtn.onclick = () => {
   const login = document.querySelector('[name = "login"]');
   document.cookie = `Login=${login.value}`;
 }
+
+
+// const popupCard = document.querySelector('#popup-card');
+// const closePopupCard = popupCard.querySelector(".popup-close");
+
+// function ABC() {
+  // const cat = catsData.find(c => c.id == id);
+  // console.log(cat)
+  // let popupCardInfo = `<div class="popup-close btn">
+  // <i class="fa-solid fa-xmark"></i>
+  // </div>
+  // <h2>Данные котика</h2>
+  // <div class="form-img"></div>
+  // <span>Id: ${cat.id}</span>
+  // <span>Возраст: ${cat.age}</span>
+  // <span>Имя: ${cat.name}</span>
+  // <span>Рейтинг: ${cat.rate}</span>
+  // <span>Описание: ${cat.description}</span>
+  // <span>Любимчик:</span> 
+  // <img src="${cat.img_link}" alt="">`;
+  // popupCard.innerHTML += popupCardInfo;
+
+
+// }
+
+// main.addEventListener('click', function (e) {
+//   let target = e.target.closest('.card');
+  
+//   if (!popupCard.classList.contains("active")) {
+//     popupCard.classList.add("active");
+//     popupCard.parentElement.classList.add("active");
+//   }
+
+// });
+
+// closePopupCard.addEventListener('click', () => {
+//   popupCard.classList.remove("active");
+//   popupCard.parentElement.classList.remove("active");
+// })
+
+
+
 
