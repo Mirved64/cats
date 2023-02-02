@@ -94,6 +94,13 @@ main {
   right: 10px;
 }
 
+.popup-delete {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 10;
+}
+
 .popup-wrapper {
   position: fixed;
   top: 0;

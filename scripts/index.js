@@ -25,7 +25,9 @@ const updCards = function (data) {
   data.forEach(function (cat) {
     if (cat.id) {
       let card = `<div class="${cat.favourite ? "card like" : "card"}" style="background-image: url(${cat.img_link || "images/cat.jpg"})" id="${cat.id}">
-      <span>${cat.name}</span>
+      <span>${cat.name}</span><div class="popup-delete btn">
+      <i class="fa-solid fa-trash-can-arrow-up"></i>
+      </div>
       </div>`;
       main.innerHTML += card;
     }
@@ -38,7 +40,7 @@ const updCards = function (data) {
     cards[i].style.height = width * 0.6 + "px";
 
     cards[i].addEventListener('click', (e) => {
-      console.log(cards[i].id);
+      // console.log(cards[i].id);
       const popupCard = document.querySelector('#popup-card');
       
       let kitty = catsData.filter((e) => {return e.id == cards[i].id})
@@ -204,7 +206,28 @@ submitBtn.onclick = () => {
   document.cookie = `Login=${login.value}`;
 }
 
+const deleteBtn = document.querySelectorAll('.popup-delete');
 
+for (let i = 0; i < deleteBtn.length; i++) {
+  deleteBtn[i].addEventListener('click', async (event) => {
+       
+    try {
+      event.stopPropagation();
+      let res = await api.delCat(deleteBtn[i].parentNode.id);
+      let data = await res.json();
+      deleteBtn[i].parentNode.remove();
+      
+           
+    } catch(err) {
+      console.log(err);
+    }
+  
+    let find = catsData.findIndex(item => item.id == cats.id);
+      catsData.splice(find, 1)
+      localStorage.setItem("cats", JSON.stringify(catsData));
+
+  });
+}
 
 
 
